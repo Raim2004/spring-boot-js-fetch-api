@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- Latest compiled and minified CSS -->
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+    />
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="./style.css"/>
+    <title>Document</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">admin@mail.ru</a>
+        <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#"
+                    >with roles:</a
+                    >
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">ADMIN USER</a>
+                </li>
+            </ul>
+            <button class="btn btn-outline-success" type="submit">Logout</button>
+        </div>
+    </div>
+</nav>
+<div class="block">
+    <div style="width: 200px; height: 100px">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Admin</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">User</a>
+            </li>
+        </ul>
+    </div>
+    <div class="content">
+        <div>
+            <h1>Admin Panel</h1>
+            <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="top"
+                    title="Tooltip on top"
+            >
+                Users table
+            </button>
+            <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                    data-bs-whatever="@mdo"
+                    onclick="newUser()"
+            >
+                New User
+            </button>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">First name</th>
+                    <th scope="col">Last name</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+                </thead>
+                <tbody id="addUser">
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div>modal1</div>
+
+<!-- todo edit modal -->
+<div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                ></button>
+            </div>
+            <div class="modal-body">
+                <form>
+
+                    <!-- todo first name -->
+                    <div class="mb-3">
+                        <label for="setFirstName" class="col-form-label">First Name:</label>
+                        <textarea class="form-control" id="setFirstName"></textarea>
+                    </div>
+
+                    <!-- todo last name -->
+                    <div class="mb-3">
+                        <label for="setLastName" class="col-form-label">Last name</label>
+                        <input type="text" class="form-control" id="setLastName"/>
+                    </div>
+
+                    <!-- todo age -->
+                    <div class="mb-3">
+                        <label for="setAge" class="col-form-label">Age:</label>
+                        <input type="text" class="form-control" id="setAge"/>
+                    </div>
+
+                    <!-- todo email -->
+                    <div class="mb-3">
+                        <label for="setEmail" class="col-form-label">Email</label>
+                        <input type="text" class="form-control" id="setEmail"/>
+                    </div>
+
+                    <!-- todo password -->
+                    <div class="mb-3">
+                        <label for="setPassword" class="col-form-label">Password</label>
+                        <input type="text" class="form-control" id="setPassword"/>
+                    </div>
+                    <div class="mb-3">
+                        <label
+                                for="recipient-name"
+                                class="col-form-label"
+                                style="display: block"
+                        >Role</label
+                        >
+                        <select name="" id="">
+                            <option value="">ADMIN</option>
+                            <option value="">USER</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+
+
+            <div class="modal-footer">
+                <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                >
+                    Close
+                </button>
+                <button type="button" class="btn btn-primary" id="changeUser">Send message</button>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+<div>modal2</div>
+
+<script>
+
+    // let backend = [
+    //     {
+    //         id: 1,
+    //         name: 'admin',
+    //         lastName: 'admin',
+    //         age: 35,
+    //         email: 'admin@mail.ru',
+    //         role: 'ADMIN',
+    //         password: '1234'
+    //     },
+    //     {
+    //         id: 2,
+    //         name: 'user',
+    //         lastName: 'user',
+    //         age: 20,
+    //         email: 'user@gmail.ru',
+    //         role: 'USER',
+    //         password: '4321'
+    //     }
+    // ]
+    fetch('http://localhost:8088/api/admin/info')
+        .then((response) => {
+            return response.json();
+        })
+        .then( users => {
+            console.log(users)
+
+            render(users)
+    })
+    // for append
+    let node = document.getElementById('addUser')
+
+
+    //render
+    function render(argum) {
+        node.innerHTML = ''
+
+        for (let i = 0; i < argum.length; i++) {
+            let childNode = document.createElement('tr')
+            childNode.innerHTML = `<th scope="row">${argum[i].id}</th>
+      <td>${argum[i].name}</td>
+      <td>${argum[i].lastName}</td>
+      <td>${argum[i].age}</td>
+      <td>${argum[i].email}</td>
+
+      <td>
+        <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        data-bs-whatever="@mdo"
+        style="background: rgb(30, 126, 190); border-radius: 5px"
+        
+        onclick="updateUser('${argum[i].id}',
+         '${argum[i].name}',
+          '${argum[i].email}',
+           '${argum[i].lastName}',
+            '${argum[i].age}',
+             ${argum[i].password})"
+        > Edit
+        </button>
+        
+        <td>
+          <button
+          id="deletebtn"
+          type="button"
+          class="btn btn-primary"
+          style="background: red; border-radius: 5px"
+          onclick="deleteUser('${argum[i].id}')"
+          >  delete
+          </button>
+          </td>
+          `
+
+            node.append(childNode)
+        }
+    }
+
+
+    let setFirstName = document.getElementById('setFirstName')
+    let setLastName = document.getElementById('setLastName')
+    let setAge = document.getElementById('setAge')
+    let setEmail = document.getElementById('setEmail')
+    let setPassword = document.getElementById('setPassword')
+
+    let changeBtn = document.getElementById('changeUser')
+
+    let modalIsActive = document.getElementById('exampleModal')
+
+
+    // add user modal
+    function newUser() {
+        setFirstName.value = ''
+        setLastName.value = ''
+        setAge.value = ''
+        setEmail.value = ''
+        setPassword.value = ''
+
+        changeBtn.addEventListener('click', addOnClick)
+        changeBtn.setAttribute('data-bs-dismiss', "modal")
+    }
+
+    //seng new user
+    function addOnClick() {
+
+        let data = {
+            id: Math.floor(Math.random() * 100),
+            name: setFirstName.value,
+            email: setEmail.value,
+            lastName: setLastName.value,
+            age: setAge.value,
+            password: setPassword.value,
+            role: 'user'
+        }
+
+        fetch('http://localhost:8088/api/admin', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then((response) => {
+                console.log(response.json());
+
+            })
+            .then((response)=>{
+                location.reload()
+            })
+        changeBtn.removeEventListener('click', addOnClick)
+
+    }
+
+    // change user
+    function updateUser(id, name, email, lastname, age, password) {
+        setFirstName.value = name
+        setLastName.value = lastname
+        setAge.value = age
+        setEmail.value = email
+        setPassword.value = password
+
+
+        changeBtn.addEventListener('click', updateOnClick)
+
+
+        function updateOnClick() {
+            let data = {
+                id: id,
+                name: setFirstName.value,
+                lastName: setLastName.value,
+                age: setAge.value,
+                email: setEmail.value,
+                password: setPassword.value
+
+            }
+
+            fetch('http://localhost:8088/api/admin', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }).then(res => res.json())
+            .then(response => location.reload())
+
+
+            changeBtn.removeEventListener('click', updateOnClick)
+        }
+    }
+
+
+    // delete user
+    function deleteUser(id) {
+        if(confirm('вы точно хотите удалить ?')){
+            fetch('http://localhost:8088/api/admin/' + id, {
+                method: 'DELETE',
+                body: {id},
+            })
+            .then(response => {
+                location.reload()
+            })
+        }
+    }
+
+
+</script>
+</body>
+</html>
